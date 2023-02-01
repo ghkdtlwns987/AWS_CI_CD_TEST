@@ -9,9 +9,6 @@ on:
 permissions:
   contents: read
 
-env:
-  S3_BUCKET_NAME: ghkdtlwns987-bucket
-
 jobs:
   build:
 
@@ -49,4 +46,4 @@ jobs:
           --region ap-northeast-1 \
           --acl private \
           ./deploy.tar.gz \
-          s3://$S3_BUCKET_NAME/deploy.tar.gz  \
+          s3://ghkdtlwns987-bucket/deploy.tar.gz  \
