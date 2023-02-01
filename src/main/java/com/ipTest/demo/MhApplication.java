@@ -23,6 +23,7 @@ public class MhApplication {
 		return new HashMap<>() {{
 			put("hostIp", InetAddress.getLocalHost().getHostAddress());
 			put("accessIp", request.getHeader("x-forwarded-for"));
+			put("accessIp", request.getHeader("x-forwarded-for"));
 		}};
 	}
 }
