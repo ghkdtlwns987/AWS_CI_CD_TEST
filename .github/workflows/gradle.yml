@@ -50,4 +50,4 @@ jobs:
         --region ap-northeast-1 \
         --acl private \
         ./deploy.tar.gz \
-        s3://ghkdtlwns098-bucket/deploy.tar.gz  \
+        s3://ghkdtlwns987-bucket/deploy.tar.gz  \
