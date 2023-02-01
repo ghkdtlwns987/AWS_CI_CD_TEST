@@ -2,9 +2,9 @@ name: github action codedeploy CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -31,19 +31,35 @@ jobs:
       - name: Make Directory
         run: mkdir dist
 
-      - name: Copy jar
-        run: cp ./build/libs/*.jar ./dist/
+      - name: Move Jar
+        run: mv ./build/libs/*.jar ./dist/application.jar
+
+      - name: Move CodeDeploy Script
+        run: mv ./codedeploy/* ./dist/
 
       - name: zip
         run: tar -zcvf deploy.tar.gz ./dist
 
-      - name: Upload to S3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          AWS_ACCESS_KEY_ID: $
-          AWS_SECRET_ACCESS_KEY: $
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Upload to S3
         run: |
           aws s3 cp \
           --region ap-northeast-1 \
           --acl private \
           ./deploy.tar.gz \
           s3://ghkdtlwns987-bucket/deploy.tar.gz  \
+
+      - name: Call CodeDeploy
+        run: |
+          aws deploy create-deployment \
+          --application-name ghkdtlwns987-codedeploy-app \
+          --deployment-group-name ghkdtlwns987-codedeploy-app-group \
+          --region ap-northeast-2 \
+          --s3-location bucket=ghkdtlwns987-bucket,bundleType=tgz,key=$/deploy.tar.gz \
+
