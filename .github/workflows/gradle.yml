@@ -51,3 +51,11 @@ jobs:
         --acl private \
         ./deploy.tar.gz \
         s3://ghkdtlwns987-bucket/deploy.tar.gz  \
+
+    - name: Call CodeDeploy
+      run: |
+        aws deploy create-deployment \
+        --application-name ghkdtlwns987-codedeploy-app \
+        --deployment-group-name ghkdtlwns987-codedeploy-app-group \
+        --region ap-northeast-1 \
+        --s3-location bucket=ghkdtlwns987-codedeploy-s3-bucket,bundleType=tgz,key=$/deploy.tar.gz \
