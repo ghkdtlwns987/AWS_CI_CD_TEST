@@ -43,7 +43,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: $
         run: |
           aws s3 cp \
-          --region ap-northeast-1 \
+          --region ap-northeast-2 \
           --acl private \
           ./deploy.tar.gz \
           s3://ghkdtlwns987-bucket-s3-bucket/$/deploy.tar.gz  \
