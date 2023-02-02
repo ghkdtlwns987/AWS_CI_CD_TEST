@@ -59,7 +59,7 @@ jobs:
         run: |
           aws deploy create-deployment \
           --application-name ghkdtlwns987-codedeploy-app \
-          --deployment-group-name ghkdtlwns987-codedeploy-app-group \
+          --deployment-group-name ghkdtlwns987-deploy-group \
           --region ap-northeast-2 \
           --s3-location bucket=ghkdtlwns987-bucket,bundleType=tgz,key=$/deploy.tar.gz \
 
