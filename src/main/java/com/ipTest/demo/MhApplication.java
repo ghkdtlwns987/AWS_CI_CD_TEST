@@ -25,4 +25,8 @@ public class MhApplication {
 			put("accessIp", request.getHeader("x-forwarded-for"));
 		}};
 	}
+	@GetMapping("/script-health-check")
+	public ResponseEntity<?> scriptHealthCheck() {
+        return ResponseEntity.ok().build();
+    }
 }
