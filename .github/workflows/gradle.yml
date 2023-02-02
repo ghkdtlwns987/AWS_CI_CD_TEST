@@ -56,7 +56,7 @@ jobs:
           s3://ghkdtlwns987-bucket/deploy.tar.gz  \
 
       - name: Call CodeDeploy
-        run: |
+        run: | 
           aws deploy create-deployment \
           --application-name ghkdtlwns987-codedeploy-app \
           --deployment-group-name ghkdtlwns987-deploy-group \
