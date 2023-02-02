@@ -2,6 +2,7 @@ package com.ipTest.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class MhApplication {
 			put("accessIp", request.getHeader("x-forwarded-for"));
 		}};
 	}
-	@GetMapping("/script-health-check")
+	@GetMapping("/health-check")
 	public ResponseEntity<?> scriptHealthCheck() {
         return ResponseEntity.ok().build();
     }

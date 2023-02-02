@@ -20,4 +20,4 @@ validate () {
 
 }
 
-validate "localhost:8082/script-health-check" "샘플"
+validate "localhost:8082/health-check" "샘플"
